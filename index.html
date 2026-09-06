@@ -1,9 +1,9 @@
 # <!DOCTYPE html>
-<html lang="ha">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakon Sirri</title>
+    <title>Secret Access</title>
     <style>
         body {
             background-color: #0d1117;
@@ -41,12 +41,11 @@
 
     <div class="box">
         <div id="status" class="loading">
-            [system] Yana tantance bayanai... <br><br>
-            Da fatan zaka jira sakanni <span id="timer" style="font-weight:bold; font-size:1.4rem; color:#fff;">5</span>...
+            [System] Verifying secret payload... <br><br>
+            Please wait <span id="timer" style="font-weight:bold; font-size:1.4rem; color:#fff;">5</span> seconds...
         </div>
         
-        <!-- Saka link din hotonka a maimakon SAKAN_LINK_DIN_HOTONKA -->
-        <img id="hoto" src=" https://ibb.co/hRKqPQVy" alt="Hoto">
+        <img id="hoto" src="https://i.postimg.cc/QNzKS65z/IMG-1562.png" alt="Secret Image">
     </div>
 
     <script>
@@ -59,7 +58,7 @@
             
             if (seconds <= 0) {
                 clearInterval(countdown);
-                document.getElementById('status').innerHTML = "[System Output] An Buɗe Bayani Cikin Nasara! 👇";
+                document.getElementById('status').innerHTML = "[System Output] Access Granted! Secret Unlocked 👇";
                 document.getElementById('hoto').style.display = 'block';
             }
         }, 1000);
