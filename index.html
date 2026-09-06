@@ -1,1 +1,70 @@
-# Scret-pict
+# <!DOCTYPE html>
+<html lang="ha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakon Sirri</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #00ff66;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        .box {
+            border: 1px solid #00ff66;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+            max-width: 90%;
+        }
+        #hoto {
+            display: none;
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #00ff66;
+        }
+        .loading {
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <div id="status" class="loading">
+            [system] Yana tantance bayanai... <br><br>
+            Da fatan zaka jira sakanni <span id="timer" style="font-weight:bold; font-size:1.4rem; color:#fff;">5</span>...
+        </div>
+        
+        <!-- Saka link din hotonka a maimakon SAKAN_LINK_DIN_HOTONKA -->
+        <img id="hoto" src=" https://ibb.co/hRKqPQVy" alt="Hoto">
+    </div>
+
+    <script>
+        let seconds = 5;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(() => {
+            seconds--;
+            timerElement.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                document.getElementById('status').innerHTML = "[System Output] An Buɗe Bayani Cikin Nasara! 👇";
+                document.getElementById('hoto').style.display = 'block';
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
+
