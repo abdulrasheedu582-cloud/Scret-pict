@@ -37,6 +37,37 @@
             margin: 5px 0;
             font-size: 0.95rem;
         }
+        #pass-area {
+            display: none;
+            margin-top: 15px;
+        }
+        input[type="password"] {
+            background: #161b22;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            padding: 8px 12px;
+            font-family: inherit;
+            border-radius: 4px;
+            outline: none;
+        }
+        button {
+            background: #00ff66;
+            color: #0d1117;
+            border: none;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-family: inherit;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        button:hover {
+            background: #00cc52;
+        }
+        #msg {
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -44,6 +75,13 @@
     <div class="box">
         <div id="terminal">
             <div class="terminal-line">[root@system ~]# ping -c 5 target.secret.node</div>
+        </div>
+
+        <div id="pass-area">
+            <div class="terminal-line" style="color: #fff;">[System] Authentication Required. Enter Password:</div>
+            <input type="password" id="passwordInput" placeholder="Enter password...">
+            <button onclick="checkPassword()">UNLOCK</button>
+            <div id="msg"></div>
         </div>
         
         <img id="hoto" src="https://i.postimg.cc/QNzKS65z/IMG-1562.png" alt="Secret Image">
@@ -62,20 +100,29 @@
                 seconds--;
             } else {
                 clearInterval(countdown);
-                const finalLine = document.createElement('div');
-                finalLine.className = 'terminal-line';
-                finalLine.style.color = '#fff';
-                finalLine.style.fontWeight = 'bold';
-                finalLine.style.marginTop = '10px';
-                finalLine.textContent = '[System Output] Access Granted! Displaying payload 👇';
-                terminal.appendChild(finalLine);
-                
-                document.getElementById('hoto').style.display = 'block';
+                document.getElementById('pass-area').style.display = 'block';
             }
         }, 1000);
+
+        function checkPassword() {
+            const pass = document.getElementById('passwordInput').value;
+            const msg = document.getElementById('msg');
+            
+            // PASSWORD DIN YANZU SHINE: Hajara
+            if (pass === "Hajara") {
+                msg.style.color = "#00ff66";
+                msg.textContent = "[System Output] Access Granted! Displaying payload 👇";
+                document.getElementById('hoto').style.display = 'block';
+                document.getElementById('pass-area').style.display = 'none';
+            } else {
+                msg.style.color = "#ff3333";
+                msg.textContent = "[Error] Access Denied! Incorrect Password.";
+            }
+        }
     </script>
 
 </body>
 </html>
+
 
 
