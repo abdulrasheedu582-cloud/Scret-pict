@@ -1,4 +1,4 @@
-# <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,6 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            text-align: center;
             padding: 20px;
         }
         .box {
@@ -24,6 +23,8 @@
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
             max-width: 90%;
+            width: 100%;
+            text-align: left;
         }
         #hoto {
             display: none;
@@ -32,17 +33,17 @@
             margin-top: 15px;
             border: 2px solid #00ff66;
         }
-        .loading {
-            font-size: 1.1rem;
+        .terminal-line {
+            margin: 5px 0;
+            font-size: 0.95rem;
         }
     </style>
 </head>
 <body>
 
     <div class="box">
-        <div id="status" class="loading">
-            [System] Verifying secret payload... <br><br>
-            Please wait <span id="timer" style="font-weight:bold; font-size:1.4rem; color:#fff;">5</span> seconds...
+        <div id="terminal">
+            <div class="terminal-line">[root@system ~]# ping -c 5 target.secret.node</div>
         </div>
         
         <img id="hoto" src="https://i.postimg.cc/QNzKS65z/IMG-1562.png" alt="Secret Image">
@@ -50,15 +51,25 @@
 
     <script>
         let seconds = 5;
-        const timerElement = document.getElementById('timer');
+        const terminal = document.getElementById('terminal');
         
         const countdown = setInterval(() => {
-            seconds--;
-            timerElement.textContent = seconds;
-            
-            if (seconds <= 0) {
+            if (seconds > 0) {
+                const line = document.createElement('div');
+                line.className = 'terminal-line';
+                line.textContent = `64 bytes from target.secret.node: seq=${6 - seconds} ttl=64 time=${(Math.random() * 20 + 10).toFixed(2)} ms`;
+                terminal.appendChild(line);
+                seconds--;
+            } else {
                 clearInterval(countdown);
-                document.getElementById('status').innerHTML = "[System Output] Access Granted! Secret Unlocked 👇";
+                const finalLine = document.createElement('div');
+                finalLine.className = 'terminal-line';
+                finalLine.style.color = '#fff';
+                finalLine.style.fontWeight = 'bold';
+                finalLine.style.marginTop = '10px';
+                finalLine.textContent = '[System Output] Access Granted! Displaying payload 👇';
+                terminal.appendChild(finalLine);
+                
                 document.getElementById('hoto').style.display = 'block';
             }
         }, 1000);
@@ -66,4 +77,5 @@
 
 </body>
 </html>
+
 
