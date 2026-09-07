@@ -74,7 +74,7 @@
 
     <div class="box">
         <div id="terminal">
-            <div class="terminal-line">[root@system ~]# ping -c 5 target.secret.node</div>
+            <div class="terminal-line">[root@system ~]# ping -c 10 target.secret.node</div>
         </div>
 
         <div id="pass-area">
@@ -84,31 +84,33 @@
             <div id="msg"></div>
         </div>
         
-        <img id="hoto" src="https://i.postimg.cc/QNzKS65z/IMG-1562.png" alt="Secret Image">
+        <!-- SABON HOTONKA MAI LINK: https://i.postimg.cc/Dz7cFCx0/IMG-1763.png -->
+        <img id="hoto" src="https://i.postimg.cc/Dz7cFCx0/IMG-1763.png" alt="Secret Image">
     </div>
 
     <script>
-        let seconds = 5;
+        let count = 1;
+        const totalPings = 10;
         const terminal = document.getElementById('terminal');
         
         const countdown = setInterval(() => {
-            if (seconds > 0) {
+            if (count <= totalPings) {
                 const line = document.createElement('div');
                 line.className = 'terminal-line';
-                line.textContent = `64 bytes from target.secret.node: seq=${6 - seconds} ttl=64 time=${(Math.random() * 20 + 10).toFixed(2)} ms`;
+                line.textContent = `64 bytes from target.secret.node: seq=${count} ttl=64 time=${(Math.random() * 20 + 10).toFixed(2)} ms`;
                 terminal.appendChild(line);
-                seconds--;
+                count++;
             } else {
                 clearInterval(countdown);
                 document.getElementById('pass-area').style.display = 'block';
             }
-        }, 1000);
+        }, 700); // Yanzu yana fitar da rubutu cikin sauri da dadin kallo
 
         function checkPassword() {
             const pass = document.getElementById('passwordInput').value;
             const msg = document.getElementById('msg');
             
-            // PASSWORD DIN YANZU SHINE: Hajara
+            // PASSWORD: Hajara
             if (pass === "Hajara") {
                 msg.style.color = "#00ff66";
                 msg.textContent = "[System Output] Access Granted! Displaying payload 👇";
@@ -123,6 +125,7 @@
 
 </body>
 </html>
+
 
 
 
